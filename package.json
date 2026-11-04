@@ -1,0 +1,19 @@
+{
+  "name": "asset-management",
+  "version": "1.0.0",
+  "description": "ROF Asset Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-session": "^1.19.0",
+    "multer": "^2.2.0",
+    "sqlite3": "^5.1.7",
+    "xlsx": "^0.18.5",
+    "nodemailer": "^6.10.1",
+    "dotenv": "^16.4.7",
+    "xlsx-js-style": "^1.2.0"
+  }
+}

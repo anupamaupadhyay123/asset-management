@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        ROF Asset Management
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-logo" style="background:#fff;display:flex;align-items:center;justify-content:center;padding:5px;overflow:hidden">
+                <img src="images/rof-logo.png" alt="ROF logo" style="width:100%;height:100%;object-fit:contain;display:block" />
+            </div>
+
+            <div>
+
+                <div class="brand-title">
+                    Asset Management
+                </div>
+
+                <div class="brand-subtitle">
+                    IT Department
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="sidebar-nav">
+
+            <a
+                href="index.html"
+                class="active"
+            >
+                ▣ &nbsp; Dashboard
+            </a>
+
+
+            <a href="assets.html">
+                ▤ &nbsp; Assets
+            </a>
+
+
+            <a href="reports.html">
+                ▥ &nbsp; Reports
+            </a>
+
+
+            <a href="settings.html">
+                ⚙ &nbsp; Settings
+            </a>
+
+        </nav>
+
+
+        <!-- SYSTEM STATUS -->
+
+        <div class="system-status">
+
+            <span class="online-dot"></span>
+
+            <div>
+
+                <strong>
+                    System Online
+                </strong>
+
+                <small>
+                    Asset Management
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="page-header">
+
+
+            <div>
+
+                <h1>
+                    Dashboard
+                </h1>
+
+                <p>
+                    Overview of your asset management system
+                </p>
+
+            </div>
+
+
+            <div class="header-right">
+
+
+                <div class="header-search">
+
+                    <span>
+                        🔍
+                    </span>
+
+                    <input
+                        type="text"
+                        id="dashboardSearch"
+                        placeholder="Search assets..."
+                    >
+
+                </div>
+
+
+                <div class="admin-profile">
+
+                    <div class="admin-avatar">
+                        A
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            IT Admin
+                        </strong>
+
+                        <small>
+                            IT Department
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             PAGE BODY
+        ================================================== -->
+
+        <div class="page-body">
+
+
+            <!-- =================================================
+                 DASHBOARD TITLE
+            ================================================== -->
+
+            <div class="dashboard-heading">
+
+                <div>
+
+                    <h2>
+                        Asset Overview
+                    </h2>
+
+                    <p>
+                        Current status of all registered assets
+                    </p>
+
+                </div>
+
+
+                <div class="dashboard-date">
+
+                    <span>
+                        ●
+                    </span>
+
+                    Live Data
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SUMMARY CARDS
+            ================================================== -->
+
+            <div class="dashboard-stats">
+
+
+                <!-- TOTAL -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon total">
+                        ▣
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Assets
+                        </span>
+
+                        <strong id="totalAssets">
+                            0
+                        </strong>
+
+                        <small>
+                            All registered assets
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AVAILABLE -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon available">
+                        ✓
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Available
+                        </span>
+
+                        <strong id="availableAssets">
+                            0
+                        </strong>
+
+                        <small>
+                            Ready for assignment
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ASSIGNED -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon assigned">
+                        ↗
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Assigned
+                        </span>
+
+                        <strong id="assignedAssets">
+                            0
+                        </strong>
+
+                        <small>
+                            Currently assigned
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- REPAIR -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon repair">
+                        ⚒
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Under Repair
+                        </span>
+
+                        <strong id="repairAssets">
+                            0
+                        </strong>
+
+                        <small>
+                            Needs attention
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RETIRED -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon retired">
+                        ◉
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Retired
+                        </span>
+
+                        <strong id="retiredAssets">
+                            0
+                        </strong>
+
+                        <small>
+                            No longer in use
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CHARTS
+            ================================================== -->
+
+            <div class="dashboard-chart-grid">
+
+
+                <!-- ASSET STATUS -->
+
+                <div class="dashboard-panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Asset Status
+                            </h3>
+
+                            <p>
+                                Current distribution by status
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-chart-area">
+
+
+                        <div
+                            class="status-donut"
+                            id="statusDonut"
+                        >
+
+                            <div class="status-donut-center">
+
+                                <strong id="chartTotal">
+                                    0
+                                </strong>
+
+                                <span>
+                                    Total
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="status-legend"
+                            id="statusLegend"
+                        >
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- ASSET TYPES -->
+
+                <div class="dashboard-panel">
+
+
+                    <div class="panel-header">
+
+                        <div>
+
+                            <h3>
+                                Asset Types
+                            </h3>
+
+                            <p>
+                                Assets by category
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="asset-type-chart"
+                        id="assetTypeChart"
+                    >
+
+                        <div class="chart-loading">
+                            Loading asset types...
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RECENT ACTIVITY
+            ================================================== -->
+
+            <div class="dashboard-panel activity-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Recent Activity
+                        </h3>
+
+                        <p>
+                            Latest asset activities
+                        </p>
+
+                    </div>
+
+
+                    <a
+                        href="reports.html"
+                        class="panel-link"
+                    >
+                        View All
+                    </a>
+
+                </div>
+
+
+                <div
+                    class="activity-list"
+                    id="recentActivity"
+                >
+
+                    <div class="activity-empty">
+                        Loading activity...
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 QUICK ACTIONS
+            ================================================== -->
+
+            <div class="dashboard-panel quick-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <h3>
+                            Quick Actions
+                        </h3>
+
+                        <p>
+                            Common asset management actions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-actions">
+
+
+                    <a
+                        href="assets.html"
+                        class="dashboard-action"
+                    >
+
+                        <div class="action-icon blue">
+                            +
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Add Asset
+                            </strong>
+
+                            <span>
+                                Register a new company asset
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="assets.html"
+                        class="dashboard-action"
+                    >
+
+                        <div class="action-icon green">
+                            ↗
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Assign Asset
+                            </strong>
+
+                            <span>
+                                Assign an asset to employee
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+
+                    <a
+                        href="reports.html"
+                        class="dashboard-action"
+                    >
+
+                        <div class="action-icon purple">
+                            ▥
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                View Reports
+                            </strong>
+
+                            <span>
+                                Check asset reports
+                            </span>
+
+                        </div>
+
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     DASHBOARD JAVASCRIPT
+========================================================== -->
+
+<script src="js/access-control.js"></script>
+
+<script
+    src="js/dashboard.js"
+></script>
+
+
+<script>window.addEventListener("beforeunload", function() {});</script>
+</body>
+
+</html>

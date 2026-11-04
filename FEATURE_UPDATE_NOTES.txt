@@ -1,0 +1,31 @@
+ROF ASSET MANAGEMENT - ASSET CONDITION & PHOTO UPDATE
+
+Included changes:
+1. Assignment form now displays asset-specific condition components for Laptop, CPU/Desktop, Monitor, UPS, Printer, and a generic Other asset.
+2. Accessories can be recorded on the assignment (including Wired/Wireless Keyboard and Mouse where applicable). Keyboard and Mouse are not created as separate inventory assets.
+3. Component condition selections and accessory details are stored in a new assignment_condition_details table created automatically by database/database.js.
+4. Multiple issue-condition photos can be uploaded while assigning an asset (maximum 10 images, 5 MB each; JPG, PNG, WEBP).
+5. Return flow optionally accepts multiple return-condition photos using the same limits.
+6. Photos are stored in SQLite in assignment_photos, linked to the assignment, with issue/return stage and upload timestamp.
+7. Assets list has a Photos action to view assignment condition photos in a gallery. Selecting a thumbnail opens the full-size image in a new tab.
+8. The printed issuance form preserves the existing layout and includes a small additional component-condition summary when available.
+
+Compatibility and safety:
+- Existing asset and assignment tables are not destructively altered.
+- New tables are created with CREATE TABLE IF NOT EXISTS on startup.
+- Existing asset.db and .env from the supplied archive are retained unchanged in this ZIP.
+- Existing node_modules are retained unchanged.
+- Webcam capture is not enabled yet. The upload/API/storage model is shared so a future browser camera capture control can submit images to the same photo endpoint.
+
+Validation performed:
+- Node syntax checks passed for changed JavaScript files.
+- Inline JavaScript in asset-issuance.html passed syntax check.
+- New SQLite table definitions were tested against a copy of the supplied database.
+- Full application runtime testing was not possible in this Linux environment because the supplied node_modules/sqlite3 native binary is Windows-specific. Please test on the target Windows machine after taking a backup.
+
+Recommended first test:
+1. Back up the current project folder and database/asset.db.
+2. Extract this ZIP into a separate test folder first.
+3. Start the application on the target Windows machine.
+4. Assign a test asset, select component conditions/accessories, and upload an issue photo.
+5. Use Photos to view the image; return the test asset with a return photo and verify both stages are visible.

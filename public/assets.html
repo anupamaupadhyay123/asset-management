@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Assets - ROF Asset Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/assets.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-logo" style="background:#fff;display:flex;align-items:center;justify-content:center;padding:5px;overflow:hidden">
+                    <img src="images/rof-logo.png" alt="ROF logo" style="width:100%;height:100%;object-fit:contain;display:block" />
+                </div>
+
+                <div>
+
+                    <div class="brand-title">
+                        Asset Management
+                    </div>
+
+                    <div class="brand-subtitle">
+                        IT Department
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <nav class="sidebar-nav">
+
+                <a href="index.html">
+                    ▣ &nbsp; Dashboard
+                </a>
+
+                <a href="assets.html" class="active">
+                    ▤ &nbsp; Assets
+                </a>
+
+                <a href="reports.html">
+                    ▥ &nbsp; Reports
+                </a>
+
+                <a href="settings.html">
+                    ⚙ &nbsp; Settings
+                </a>
+
+            </nav>
+
+
+            <div class="system-status">
+
+                <span class="online-dot"></span>
+
+                <div>
+
+                    <strong>
+                        System Online
+                    </strong>
+
+                    <small>
+                        Asset Management
+                    </small>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- HEADER -->
+
+            <header class="page-header">
+
+                <div>
+
+                    <h1>
+                        Assets
+                    </h1>
+
+                    <p>
+                        Manage all company assets
+                    </p>
+
+                </div>
+
+
+                <div class="header-right">
+
+                    <div class="header-search">
+
+                        🔍
+
+                        <input type="text" placeholder="Search assets...">
+
+                    </div>
+
+
+                    <div class="admin-profile">
+
+                        <div class="admin-avatar">
+                            A
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                IT Admin
+                            </strong>
+
+                            <small>
+                                IT Department
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =====================================================
+             ASSET REGISTER
+        ====================================================== -->
+
+            <section class="page-body">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Asset Register
+                        </h2>
+
+                        <p>
+                            View and manage all registered assets
+                        </p>
+
+                    </div>
+
+
+                    <div class="section-actions">
+
+                        <button id="assignAssetTopBtn" class="assign-top-btn" type="button">
+                            Assign Asset
+                        </button>
+
+                        <button id="addAssetBtn" class="primary-btn" type="button">
+                            + Add Asset
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                 COUNT CARDS
+            ================================================== -->
+
+                <div class="dashboard-stats asset-dashboard-stats">
+
+                    <div class="dashboard-stat-card">
+                        <div class="dashboard-stat-icon total">▣</div>
+                        <div>
+                            <span>Total Assets</span>
+                            <strong>0</strong>
+                            <small>All registered assets</small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <div class="dashboard-stat-icon available">✓</div>
+                        <div>
+                            <span>Available</span>
+                            <strong>0</strong>
+                            <small>Ready for assignment</small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <div class="dashboard-stat-icon assigned">↗</div>
+                        <div>
+                            <span>Assigned</span>
+                            <strong>0</strong>
+                            <small>Currently assigned</small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <div class="dashboard-stat-icon repair">⚒</div>
+                        <div>
+                            <span>Under Repair</span>
+                            <strong>0</strong>
+                            <small>Needs attention</small>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stat-card">
+                        <div class="dashboard-stat-icon retired">◉</div>
+                        <div>
+                            <span>Retired</span>
+                            <strong>0</strong>
+                            <small>No longer in use</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- =================================================
+                 FILTERS
+            ================================================== -->
+
+                <div class="filter-box">
+
+                    <input type="text" id="tableSearch" placeholder="Search by Asset ID, Serial Number, Brand...">
+
+
+                    <select id="statusFilter">
+
+                        <option value="">
+                            All Status
+                        </option>
+
+                        <option value="Available">
+                            Available
+                        </option>
+
+                        <option value="Assigned">
+                            Assigned
+                        </option>
+
+                        <option value="Under Repair">
+                            Under Repair
+                        </option>
+
+                        <option value="Retired">
+                            Retired
+                        </option>
+
+                    </select>
+
+
+                    <select id="typeFilter">
+
+                        <option value="">
+                            All Asset Types
+                        </option>
+
+                        <option value="Laptop">
+                            Laptop
+                        </option>
+
+                        <option value="Desktop">
+                            Desktop
+                        </option>
+
+                        <option value="Monitor">
+                            Monitor
+                        </option>
+
+                        <option value="Printer">
+                            Mobile
+                        </option>
+
+                        <option value="Printer">
+                            Printer
+                        </option>
+
+                        <option value="UPS">
+                            UPS
+                        </option>
+
+                        <option value="Server">
+                            Server
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+
+                    <select id="locationFilter">
+
+                        <option value="">
+                            All Locations
+                        </option>
+
+                        <option value="ROF Alante">
+                            Head Office
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Ambliss 78
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Insignia Park-01
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Insignia Park-02
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Aalayas-102
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Ananda
+                        </option>
+
+                        <option value="ROF Alante">
+                            Advik_By_ROF
+                        </option>
+
+                        <option value="ROF Alante">
+                            Antares_By_ ROF
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Normenton Park
+                        </option>
+
+                        <option value="ROF Alante">
+                            ROF Alante
+                        </option>
+
+                        <option value="ROF Murthal">
+                            ROF I-City (Murthal)
+                        </option>
+
+                        <option value="ROF Pravasa">
+                            ROF Pravasa 88
+                        </option>
+
+                        <option value="ROF Affordable 91">
+                            ROF Affordable 91
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- =================================================
+                 ASSET TABLE
+            ================================================== -->
+
+                <div class="table-card">
+
+
+                    <div class="table-header">
+
+                        <div>
+
+                            <h3>
+                                All Assets
+                            </h3>
+
+                            <span>
+                                0 assets found
+                            </span>
+
+                        </div>
+
+
+                        <button type="button" class="secondary-btn" id="importAssetsBtn">
+                            ↑ Import Assets
+                        </button>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Asset ID
+                                    </th>
+
+                                    <th>
+                                        Asset Type
+                                    </th>
+
+                                    <th>
+                                        Model
+                                    </th>
+
+                                    <th>
+                                        Serial Number
+                                    </th>
+
+                                    <th>
+                                        Location
+                                    </th>
+
+                                    <th>
+                                        Assigned To
+                                    </th>
+
+                                    <th>
+                                        Status
+                                    </th>
+
+                                    <th>
+                                        Action
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================================
+     VIEW ASSET MODAL
+========================================================== -->
+
+    <div id="viewAssetModal" class="modal-overlay">
+
+
+        <div class="modal-box view-modal">
+
+
+            <div class="modal-header">
+
+                <div>
+
+                    <h2>
+                        Asset Details
+                    </h2>
+
+                    <p>
+                        Complete asset information and history
+                    </p>
+
+                </div>
+
+
+                <button id="closeViewAssetModal" class="modal-close">
+                    ×
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+             ASSET INFORMATION
+        ================================================== -->
+
+            <div class="details-section">
+
+                <h3>
+                    Asset Information
+                </h3>
+
+
+                <div class="details-grid">
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Asset ID
+                        </label>
+
+                        <strong id="viewAssetId">
+                            —
+                        </strong>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Asset Type
+                        </label>
+
+                        <span id="viewAssetType">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Brand
+                        </label>
+
+                        <span id="viewBrand">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Model
+                        </label>
+
+                        <span id="viewModel">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Serial Number
+                        </label>
+
+                        <span id="viewSerialNumber">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Condition
+                        </label>
+
+                        <span id="viewCondition">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Purchase Date
+                        </label>
+
+                        <span id="viewPurchaseDate">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Purchase Cost
+                        </label>
+
+                        <span id="viewPurchaseCost">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Vendor
+                        </label>
+
+                        <span id="viewVendor">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Warranty Expiry
+                        </label>
+
+                        <span id="viewWarranty">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Department
+                        </label>
+
+                        <span id="viewDepartment">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <span id="viewLocation">
+                            —
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-item">
+
+                        <label>
+                            Status
+                        </label>
+
+                        <span id="viewStatus">
+                            —
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="detail-remarks">
+
+                    <label>
+                        Remarks
+                    </label>
+
+                    <p id="viewRemarks">
+                        —
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+             CURRENT ASSIGNMENT
+        ================================================== -->
+
+            <div class="details-section current-assignment-section">
+
+                <div class="history-heading">
+                    <div>
+                        <h3>Current Assignment</h3>
+                        <p>Current employee custody details</p>
+                    </div>
+                </div>
+
+                <div class="assignment-current-grid">
+                    <div class="detail-item"><label>Assigned To</label><span id="viewAssignedTo">—</span></div>
+                    <div class="detail-item"><label>Employee ID</label><span id="viewAssignedEmployeeId">—</span></div>
+                    <div class="detail-item"><label>Email</label><span id="viewAssignedEmail">—</span></div>
+                    <div class="detail-item"><label>Mobile</label><span id="viewAssignedMobile">—</span></div>
+                    <div class="detail-item"><label>Designation</label><span id="viewAssignedDesignation">—</span></div>
+                    <div class="detail-item"><label>Department</label><span id="viewAssignedDepartment">—</span></div>
+                    <div class="detail-item"><label>Location</label><span id="viewAssignedLocation">—</span></div>
+                    <div class="detail-item"><label>Assignment Date</label><span id="viewAssignedDate">—</span></div>
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+             ASSIGNMENT HISTORY
+        ================================================== -->
+
+            <div class="details-section">
+
+                <div class="history-heading">
+
+                    <div>
+
+                        <h3>
+                            Assignment History
+                        </h3>
+
+                        <p>
+                            Complete assignment and return history
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div id="assignmentHistory" class="history-list">
+
+                    <div class="history-loading">
+                        Loading history...
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- FOOTER -->
+
+            <div class="modal-footer">
+
+                <button id="closeViewAssetBtn" class="secondary-btn">
+                    Close
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+     ADD ASSET MODAL
+========================================================== -->
+
+    <!--
+    Your existing Add Asset modal should remain here.
+
+    IMPORTANT:
+    Agar tumhare current assets.html mein Add Asset modal
+    already hai, usko delete mat karna.
+
+    Us existing modal ko same jagah rakho.
+-->
+
+
+
+    <!-- =========================================================
+     ASSIGN ASSET MODAL
+========================================================== -->
+
+    <!--
+    Your existing Assign Asset modal should remain here.
+
+    IMPORTANT:
+    Isko bhi delete mat karna.
+
+    Tumhara current Assign Asset form already working hai.
+-->
+
+
+
+    <script src="js/access-control.js"></script>
+
+<script src="js/assets.js"></script>
+
+<script>window.addEventListener("beforeunload", function() {});</script>
+</body>
+
+</html>

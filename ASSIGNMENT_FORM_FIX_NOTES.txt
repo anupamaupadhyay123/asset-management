@@ -1,0 +1,22 @@
+ROF Asset Management - Assignment Form Fix
+
+Changes:
+1. Moved the Asset Condition / Accessories / Issue Photo Evidence markup out of the Add Asset modal and into the Assign Asset modal.
+2. Restored the complete issuePhotoPreview element markup.
+3. Scoped the issue-photo change listener to the Assign Asset modal and guarded it against missing elements.
+4. Kept the existing database file unchanged.
+
+Validation:
+- All JavaScript files passed `node --check`.
+- Verified the four required IDs exist inside createAssignModal():
+  assetComponentConditions, assetAccessories, issueAssetPhotos, issuePhotoPreview.
+
+Setup:
+1. Extract this ZIP.
+2. Create your local `.env` using `.env.example` and enter your own approved local settings.
+3. Run `npm install`.
+4. Run `npm start`.
+
+Security:
+- The original `.env` file and node_modules folder are intentionally excluded.
+- The database file is included unchanged from the uploaded project.
