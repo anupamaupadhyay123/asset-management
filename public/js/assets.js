@@ -1,3 +1,55 @@
+// ===== Action dropdown helper =====
+function wrapActionMenu(buttonsHTML) {
+    // Pull the View button out of the menu and keep it hidden (row click uses it)
+    const viewRegex = /<button[^>]*data-action="view"[^>]*>[\s\S]*?<\/button>/;
+    const viewMatch = buttonsHTML.match(viewRegex);
+    const hiddenViewBtn = viewMatch
+        ? viewMatch[0].replace("<button", '<button style="display:none" tabindex="-1"')
+        : "";
+    const menuButtons = buttonsHTML.replace(viewRegex, "");
+
+    return `
+        <div class="action-dropdown">
+            <button type="button" class="action-toggle-btn">&#8942;</button>
+            <div class="action-menu">${menuButtons}</div>
+            ${hiddenViewBtn}
+        </div>`;
+}
+
+function closeAllActionMenus() {
+    document.querySelectorAll(".action-menu.open").forEach(function (m) {
+        m.classList.remove("open");
+    });
+}
+
+document.addEventListener("click", function (e) {
+    const toggle = e.target.closest(".action-toggle-btn");
+
+    if (!toggle) {
+        closeAllActionMenus();
+        return;
+    }
+
+    const menu = toggle.nextElementSibling;
+    const wasOpen = menu.classList.contains("open");
+    closeAllActionMenus();
+
+    if (!wasOpen) {
+        menu.classList.add("open");
+        const rect = toggle.getBoundingClientRect();
+        const menuHeight = menu.offsetHeight;
+        let top = rect.bottom + 4;
+        if (top + menuHeight > window.innerHeight - 8) {
+            top = rect.top - menuHeight - 4;
+        }
+        menu.style.top = top + "px";
+        menu.style.left = Math.max(8, rect.right - menu.offsetWidth) + "px";
+    }
+});
+
+window.addEventListener("scroll", closeAllActionMenus, true);
+window.addEventListener("resize", closeAllActionMenus);
+
 
 // Record deliberate user actions only; normal data-loading GET requests are not audited.
 async function recordAuditEvent(action, assetId = "", description = "") {
@@ -511,7 +563,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 </td>
 
                 <td>
-                    ${actionHTML}
+                    ${wrapActionMenu(actionHTML)}
                 </td>
 
             `;
@@ -2406,7 +2458,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 <label>Mouse Type <select id="issuedMouseType"><option value="">Not issued</option><option>Wired</option><option>Wireless</option></select></label>
             </div>`;
         const accessoryBoxes = Array.from(document.querySelectorAll("[data-accessory]"));
-        const keyboardBox = accessoryBoxes.find(el => el.dataset.accessory === "Keyboard");
+        const keyboardBox = accessoryBoxes.find(el => /keyboard/i.test(el.dataset.accessory || ""));
         const mouseBox = accessoryBoxes.find(el => el.dataset.accessory === "Mouse");
         const keyboardType = document.getElementById("issuedKeyboardType");
         const mouseType = document.getElementById("issuedMouseType");
@@ -2863,7 +2915,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                 // Organisation
                 designation: designation,
                 department: department,
-                location: location,
+                location: location, processor: (document.getElementById("assignProcessor")?.value || "").trim(), ram: (document.getElementById("assignRam")?.value || "").trim(), storage: (document.getElementById("assignStorage")?.value || "").trim(), os: (document.getElementById("assignOs")?.value || "").trim(), reportingTo: (document.getElementById("assignReportingTo")?.value || "").trim(),
 
                 // Assignment
                 issuedDate: assignmentDate,
@@ -3641,7 +3693,7 @@ document.addEventListener("DOMContentLoaded", async () => {
                                 <div
                                     class="asset-result-action"
                                 >
-                                    ${actionHTML}
+                                    ${wrapActionMenu(actionHTML)}
                                 </div>
 
                             </div>
@@ -4902,4 +4954,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     loadAssets();
 
+});﻿
+// ===== Row click opens View =====
+document.addEventListener("click", function (e) {
+    // Ignore clicks on buttons, links, inputs and the Action dropdown
+    if (e.target.closest("button, a, input, select, label, .action-dropdown, .action-menu")) return;
+
+    const row = e.target.closest("tbody tr");
+    if (!row) return;
+
+    const viewBtn = row.querySelector('[data-action="view"]');
+    if (viewBtn) viewBtn.click();
 });

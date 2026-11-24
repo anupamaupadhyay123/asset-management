@@ -31,7 +31,7 @@ function makeSheet(title, subtitle, rows, options={}) {
   });
   ws["!cols"] = widths;
   // ROF branded report styling: navy title band, light-blue section headers, zebra rows.
-  const navy = "343A40", blue = "718879", paleBlue = "E5EBE6", veryPale = "F4F6F4";
+  const navy = "0F2A47", blue = "1565C0", paleBlue = "E3F2FD", veryPale = "F5F9FF";
   const border = {top:{style:"thin",color:{rgb:"D7E3F1"}},bottom:{style:"thin",color:{rgb:"D7E3F1"}},left:{style:"thin",color:{rgb:"D7E3F1"}},right:{style:"thin",color:{rgb:"D7E3F1"}}};
   const lastCol = Math.max(0, headers.length - 1);
   for (let c=0; c<=lastCol; c++) {
@@ -44,7 +44,7 @@ function makeSheet(title, subtitle, rows, options={}) {
   }
   data.forEach((row,r)=>headers.forEach((header,col)=>{
     const cell=ws[XLSX.utils.encode_cell({r:r+5,c:col})];
-    if(cell) cell.s={font:{name:"Aptos",sz:10,color:{rgb:"1E293B"}},alignment:{vertical:"top",wrapText:/description|remarks|problem|condition/i.test(header)},border,...(r%2 ? {fill:{patternType:"solid",fgColor:{rgb:"F1F4F1"}}}:{})};
+    if(cell) cell.s={font:{name:"Aptos",sz:10,color:{rgb:"0F2A47"}},alignment:{vertical:"top",wrapText:/description|remarks|problem|condition/i.test(header)},border,...(r%2 ? {fill:{patternType:"solid",fgColor:{rgb:"EEF5FC"}}}:{})};
   }));
   ws["!merges"] = [
     {s:{r:0,c:0},e:{r:0,c:Math.max(0,headers.length-1)}},
@@ -147,7 +147,7 @@ router.get("/assets/excel", async (req, res) => {
       ["Report Notes", "", "Detailed worksheets include filters, frozen headings and adjusted column widths.", "", "", "", ""]
     ];
     const coverWs = XLSX.utils.aoa_to_sheet(cover);
-    const navy = "343A40", blue = "718879", paleBlue = "E5EBE6", veryPale = "F4F6F4", borderColor = "D5DDD7", textColor = "26312B";
+    const navy = "0F2A47", blue = "1565C0", paleBlue = "E3F2FD", veryPale = "F5F9FF", borderColor = "D5DDD7", textColor = "26312B";
     const coverBorder = {top:{style:"thin",color:{rgb:borderColor}},bottom:{style:"thin",color:{rgb:borderColor}},left:{style:"thin",color:{rgb:borderColor}},right:{style:"thin",color:{rgb:borderColor}}};
     const styleCell = (r,c,style) => { const cell=coverWs[XLSX.utils.encode_cell({r,c})]; if(cell) cell.s={...style,border:coverBorder}; };
     // Full-width title bars and clearly labelled report metadata.

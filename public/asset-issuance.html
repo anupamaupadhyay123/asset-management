@@ -425,12 +425,188 @@
 
         }
 
-    </style>
+    /* =====================================================
+   HEADER LOGO + CLEANER LINES (override block)
+===================================================== */
+
+* {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}
+
+.title {
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.title-logo {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+}
+
+.title-logo img {
+    height: 36px;
+    width: auto;
+    display: block;
+}
+
+.title-logo-fallback {
+    display: none;
+    font-size: 20px;
+    font-weight: 800;
+    color: #0b1437;
+}
+
+.logo-panel {
+    display: none !important;
+}
+
+.details {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+}
+
+.details-panel {
+    width: auto !important;
+    border: 1px solid #94a3b8 !important;
+}
+
+.section-title {
+    background: #e8eef7 !important;
+    color: #0b3a7a !important;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px 8px !important;
+    border-bottom: 2px solid #0b3a7a !important;
+}
+
+.details-panel table {
+    width: 100%;
+    border-collapse: collapse !important;
+}
+
+.details-panel table td,
+.details-panel table th {
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px 10px !important;
+    font-size: 12px;
+}
+
+.field-label {
+    background: #f8fafc !important;
+    font-weight: 700;
+    color: #0f172a;
+    width: 42%;
+}
+
+/* =====================================================
+   LOGO TRANSPARENT + CONFIG STYLE
+===================================================== */
+
+.title-logo {
+    background: transparent !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+}
+
+.title-logo img {
+    height: 46px !important;
+    filter: brightness(0) invert(1);
+}
+
+.title-logo-fallback {
+    color: #ffffff !important;
+}
+
+.config-value[contenteditable="true"] {
+    outline: none;
+}
+
+@media screen {
+    .config-value[contenteditable="true"]:hover,
+    .config-value[contenteditable="true"]:focus {
+        background: #eff6ff;
+        outline: 1px dashed #2563eb;
+    }
+}
+
+
+/* =====================================================
+   LOGO BACKGROUND FIX
+===================================================== */
+
+.title-logo {
+    mix-blend-mode: screen;
+}
+
+.title-logo img {
+    filter: invert(1) !important;
+    background: transparent !important;
+}
+
+
+/* =====================================================
+   FULL WIDTH COMPONENTS
+===================================================== */
+
+#componentConditionSummary {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 1px solid #94a3b8 !important;
+    border-top: none !important;
+}
+
+#componentConditionSummary > strong {
+    display: block !important;
+    background: #e8eef7;
+    color: #0b3a7a !important;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px 8px;
+    margin: 0 !important;
+    border-bottom: 2px solid #0b3a7a;
+}
+
+#componentConditionSummary .condition-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+#componentConditionSummary .condition-table th,
+#componentConditionSummary .condition-table td {
+    border: 1px solid #cbd5e1;
+    padding: 7px 10px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#componentConditionSummary .condition-table th {
+    background: #f1f5f9;
+    color: #0b3a7a;
+    font-weight: 700;
+}
+
+
+/* DECLARATION + NAMES */
+.declaration{display:block !important;text-align:justify !important;padding:18px 24px !important;font-size:13px !important;line-height:1.9 !important;} .declaration strong{display:inline !important;font-weight:700 !important;font-size:inherit !important;color:#0b3a7a !important;border-bottom:1px solid #0b3a7a;padding:0 8px;}
+</style>
 
 </head>
 
 
 <body>
+    
 
 
     <!-- =====================================================
@@ -473,9 +649,18 @@
 
             <div class="title">
 
-                ROF IT ASSET ISSUANCE FORM
+    <div class="title-logo">
+        <img
+            src="images/rof-logo.png"
+            alt="ROF Logo"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+        >
+        <span class="title-logo-fallback">ROF</span>
+    </div>
 
-            </div>
+    <span class="title-text">ROF IT ASSET ISSUANCE FORM</span>
+
+</div>
 
 
             <!-- =================================================
@@ -564,20 +749,7 @@
                         </tr>
 
 
-                        <tr>
-
-                            <td class="field-label">
-                                Employee Code
-                            </td>
-
-                            <td
-                                class="field-value"
-                                id="employeeCode"
-                            >
-                                —
-                            </td>
-
-                        </tr>
+                        
 
 
                         <tr>
@@ -596,22 +768,33 @@
                         </tr>
 
 
-                        <tr>
-
-                            <td class="field-label">
-                                Department
-                            </td>
-
-                            <td
-                                class="field-value"
-                                id="department"
-                            >
-                                —
-                            </td>
-
-                        </tr>
+                        
 
                     </table>
+
+                    <div class="section-title config-title">
+                        Asset Configuration
+                    </div>
+
+                    <table class="field-table config-table">
+                        <tr>
+                            <td class="field-label">Processor</td>
+                            <td class="field-value config-value" id="cfgProcessor" contenteditable="true">—</td>
+                        </tr>
+                        <tr>
+                            <td class="field-label">RAM</td>
+                            <td class="field-value config-value" id="cfgRam" contenteditable="true">—</td>
+                        </tr>
+                        <tr>
+                            <td class="field-label">Storage</td>
+                            <td class="field-value config-value" id="cfgStorage" contenteditable="true">—</td>
+                        </tr>
+                        <tr>
+                            <td class="field-label">Operating System</td>
+                            <td class="field-value config-value" id="cfgOs" contenteditable="true">—</td>
+                        </tr>
+                    </table>
+
 
                 </div>
 
@@ -659,6 +842,34 @@
                             </td>
 
                         </tr>
+<tr>
+
+                            <td class="field-label">
+                                Employee Code
+                            </td>
+
+                            <td
+                                class="field-value"
+                                id="employeeCode"
+                            >
+                                —
+                            </td>
+
+                        </tr>
+<tr>
+
+                            <td class="field-label">
+                                Department
+                            </td>
+
+                            <td
+                                class="field-value"
+                                id="department"
+                            >
+                                —
+                            </td>
+
+                        </tr>
 
 
                         <tr>
@@ -693,17 +904,23 @@
                         </tr>
 
 
-                        <tr>
+                        
+
+                        
+
+                    </table>
+<div class="section-title">Additional Details</div>
+<table class="field-table">
+<tr>
                             <td class="field-label">Designation</td>
                             <td class="field-value" id="designation">—</td>
                         </tr>
-
-                        <tr>
+<tr>
                             <td class="field-label">Location</td>
                             <td class="field-value" id="location">—</td>
                         </tr>
-
-                    </table>
+<tr><td class="field-label">Reporting To</td><td class="field-value config-value" id="reportingTo" contenteditable="true">—</td></tr>
+</table>
 
 
                     <!-- =========================================
@@ -712,102 +929,19 @@
 
                     <div class="condition">
 
-                        <div class="condition-title">
-
-                            Asset Condition at Issuance
-
-                        </div>
-
-
-                        <table class="condition-table">
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>
-                                        Item
-                                    </th>
-
-                                    <th>
-                                        Status
-                                    </th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody>
-
-                                <tr>
-
-                                    <td>
-                                        Display
-                                    </td>
-
-                                    <td id="displayCondition">
-                                        —
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        Body
-                                    </td>
-
-                                    <td id="bodyCondition">
-                                        —
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        Charger
-                                    </td>
-
-                                    <td id="chargerCondition">
-                                        —
-                                    </td>
-
-                                </tr>
-
-
-                                <tr>
-
-                                    <td>
-                                        Keyboard
-                                    </td>
-
-                                    <td id="keyboardCondition">
-                                        —
-                                    </td>
-
-                                </tr>
-
-
-                                <tr><td>Wireless Mouse</td><td id="mouseCondition">N/A</td></tr>
-                                <tr><td>Accessories Issued</td><td id="accessoriesIssued">—</td></tr>
-
-                            </tbody>
-
-                        </table>
+                        
 
                     </div>
-                    <div id="componentConditionSummary" style="display:none;padding:10px 12px;border-top:1px solid #111;font-size:9px;">
-                        <strong style="display:block;color:#123b66;margin-bottom:5px;">Additional Component Condition Details</strong>
-                        <table class="condition-table"><thead><tr><th>Component</th><th>Condition at Issue</th></tr></thead><tbody id="componentConditionRows"></tbody></table>
-                    </div>
+                    
 
                 </div>
 
             </div>
+<div id="componentConditionSummary" style="display:none;padding:10px 12px;border-top:1px solid #111;font-size:9px;">
+                        <strong style="display:block;color:#123b66;margin-bottom:5px;">Additional Component Condition Details</strong>
+                        <table class="condition-table"><thead><tr><th>Component</th><th>Condition at Issue</th></tr></thead><tbody id="componentConditionRows"><tr><td>Accessories Issued</td><td id="accessoriesIssued">—</td></tr></tbody></table>
+                    </div>
+
 
 
             <!-- =================================================
@@ -1207,6 +1341,14 @@
             setValue("mouseCondition", params.get("mouseCondition") || "N/A");
             setValue("accessoriesIssued", params.get("accessories") || "—");
 
+            // System configuration (from URL params, can also be typed on the form)
+            setValue("cfgProcessor", params.get("processor"));
+            setValue("cfgRam", params.get("ram"));
+            setValue("cfgStorage", params.get("storage"));
+            setValue("cfgOs", params.get("os"));
+            setValue("reportingTo", params.get("reportingTo") || params.get("reportingManager") || params.get("reporting_manager"));
+
+
 
             const issuedDate =
                 params.get("issuedDate");
@@ -1520,6 +1662,7 @@
     </script>
 
 
+<script>(function(){var IDS=["employeeName","declarationEmployee","signatureEmployeeName","issuedBy","reportingTo"];var LIVE=["employeeName","declarationEmployee","signatureEmployeeName","issuedBy"];function fix(el){var t=el.textContent;var f=t.replace(/(^|\s)([a-z])/g,function(m,a,b){return a+b.toUpperCase();});if(f!==t){el.textContent=f;}}function all(){IDS.forEach(function(id){var el=document.getElementById(id);if(el){fix(el);}});}window.addEventListener("load",all);setTimeout(all,300);setTimeout(all,1000);LIVE.forEach(function(id){var el=document.getElementById(id);if(el){new MutationObserver(function(){fix(el);}).observe(el,{childList:true,characterData:true,subtree:true});}});all();})();</script>
 </body>
 
 </html>

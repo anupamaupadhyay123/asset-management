@@ -1,0 +1,28 @@
+/* Shared look for inner pages (Assets, Reports, Settings) */
+body { background: #eef2f9; }
+
+table { border-collapse: separate; border-spacing: 0; }
+table thead th {
+    background: #eaf1ff;
+    color: #0b1437;
+    font-weight: 600;
+    border-bottom: 2px solid #c7d7f5;
+}
+table tbody tr { transition: background .15s ease; }
+table tbody tr:hover { background: #f1f7ff; }
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(37,99,235,.15);
+}
+
+.btn-primary, .primary-btn, button.primary {
+    background: linear-gradient(90deg, #2563eb, #06b6d4) !important;
+    border: none !important;
+    color: #fff !important;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(37,99,235,.35);
+}
+
+.panel-link { color: #2563eb; font-weight: 600; }

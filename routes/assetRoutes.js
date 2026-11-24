@@ -985,11 +985,17 @@ router.post(
                 .replace(/_+/g, "_")
                 .replace(/^_|_$/g, "");
 
-            const normalizeRows = sheetName =>
-                XLSX.utils.sheet_to_json(
-                    workbook.Sheets[sheetName],
-                    { defval: "" }
-                ).map(row => Object.fromEntries(
+            const findHeaderRow = ws => {
+        const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: "" });
+        for (let i = 0; i < Math.min(rows.length, 20); i++) {
+            const keys = rows[i].map(c => cleanKey(c));
+            if (keys.includes("asset_id") || keys.includes("serial_number") || keys.includes("asset_code")) return i;
+        }
+        return 0;
+    };
+
+    const normalizeRows = sheetName =>
+                XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { defval: "", range: findHeaderRow(workbook.Sheets[sheetName]) }).map(row => Object.fromEntries(
                     Object.entries(row).map(([k, v]) => [cleanKey(k), v])
                 ));
 
@@ -1027,7 +1033,7 @@ router.post(
             };
 
             const assetSheet = findSheet(
-                ["assets", "all_assets", "asset_data"],
+                ["assets", "all_assets", "asset_data", "asset_register"],
                 workbook.SheetNames[0]
             );
             const historySheet = findSheet([
